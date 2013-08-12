@@ -9,7 +9,9 @@ Source0:	https://openarkkit.googlecode.com/files/%{name}-%{version}.tar.gz
 URL:		https://code.google.com/p/openarkkit/
 BuildRequires:	python >= 1:2.3
 BuildRequires:	rpm-pythonprov
+BuildRequires:	mysql-devel
 BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	sed >= 4.0
 Requires:	python-MySQLdb
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -46,6 +48,9 @@ The available tools are:
 
 %prep
 %setup -q
+
+socket=$(mysql_config --socket)
+grep -rl /var/run/mysqld/mysql.sock . | xargs sed -i -e "s,/var/run/mysqld/mysql.sock,$socket,"
 
 %build
 %{__python} setup.py build
