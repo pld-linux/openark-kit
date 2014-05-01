@@ -1,7 +1,7 @@
 Summary:	Common utilities for MySQL
 Name:		openark-kit
 Version:	196
-Release:	1
+Release:	2
 License:	BSD
 Group:		Applications/Databases
 Source0:	https://openarkkit.googlecode.com/files/%{name}-%{version}.tar.gz
